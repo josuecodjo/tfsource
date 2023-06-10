@@ -19,12 +19,12 @@ variable "label" {
 
 variable "mycontainer" {
   description = "Définition d'un container"
-  type = object({
+  type = map(object({
     podname = string
     labels  = map(string)
     image   = string
     name    = string
     port    = number
-  })
+  }))
 }
 
