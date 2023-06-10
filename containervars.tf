@@ -27,4 +27,3 @@ variable "mycontainer" {
     port    = number
   }))
 }
-
