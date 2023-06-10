@@ -15,9 +15,9 @@ resource "kubernetes_pod" "mycontainer" {
 
   for_each = var.mycontainer
   metadata {
-    name = each.value.podname
+    name = each.value["podname"]
     namespace = "${var.my_ns}-namespace-${var.how_many}"
-    labels = merge( each.value.labels ,{
+    labels = merge( each.value["labels"] ,{
       "type" = "std-container"
       "app.kubernetes.io/managed-by" = "Terraform"
     })
@@ -25,11 +25,11 @@ resource "kubernetes_pod" "mycontainer" {
 
   spec {
     container {
-      image = each.value.image
-      name  = each.value.name
+      image = each.value["image"]
+      name  = each.value["name"]
 
       port {
-        container_port = each.value.port
+        container_port = each.value["port"]
       }
     }
   }
